@@ -1,0 +1,142 @@
+# Clash 订阅 - Amelia 免卡版节点
+# 生成时间：2026-11-10 17:38 CST
+# 节点数：6 条，其中 Railway 4 条 2026-11-10 12:37 实测 WS 握手返回 101；
+# Uppcoder 1 条 2026-11-10 17:38 实测 WS 握手返回 101 且 xray 客户端端到端经 SOCKS 访问 ipinfo.io 成功，出口德国法尔肯施泰因 Hetzner 188.245.13.213；
+# Cloady 1 条为控制台环境变量核实（LIVE 运行 1天21小时），尚未做客户端握手实测，导入后请先测速。
+# 注意：订阅链接本身就是凭证，不要公开分享。Railway 试用剩 $4.98 / 30 天，到期服务会停。
+# Cloady 免费额度已满，同一工作区内再加 xray 会超 CPU、需 $3.40/月，未加。
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+dns:
+  enable: true
+  nameserver:
+    - 223.5.5.5
+    - 8.8.8.8
+
+proxies:
+  - name: "Cloady-Oregon-01"
+    type: vless
+    server: xray-mp1lyuuv-daohan-lu.cloady.io
+    port: 443
+    uuid: 8d8e2214-b0f1-8fe2-3c1a-3b843179e355
+    alterId: 0
+    cipher: auto
+    tls: true
+    servername: xray-mp1lyuuv-daohan-lu.cloady.io
+    network: ws
+    ws-opts:
+      path: /be0e7e91469be57f
+      headers:
+        Host: xray-mp1lyuuv-daohan-lu.cloady.io
+    udp: true
+
+  - name: "Railway-美国-加州"
+    type: vless
+    server: xray-core-production-2e65.up.railway.app
+    port: 443
+    uuid: 7c9e2a4b-5f1d-4a8e-b3c6-9d2e7f5a1b4c
+    alterId: 0
+    cipher: auto
+    tls: true
+    servername: xray-core-production-2e65.up.railway.app
+    network: ws
+    ws-opts:
+      path: /tk-rail
+      headers:
+        Host: xray-core-production-2e65.up.railway.app
+    udp: true
+
+  - name: "Railway-美国-弗吉尼亚"
+    type: vless
+    server: xray-us-east-production-8564.up.railway.app
+    port: 443
+    uuid: 7c9e2a4b-5f1d-4a8e-b3c6-9d2e7f5a1b4c
+    alterId: 0
+    cipher: auto
+    tls: true
+    servername: xray-us-east-production-8564.up.railway.app
+    network: ws
+    ws-opts:
+      path: /tk-rail
+      headers:
+        Host: xray-us-east-production-8564.up.railway.app
+    udp: true
+
+  - name: "Railway-荷兰-阿姆斯特丹"
+    type: vless
+    server: xray-eu-west-production-ef53.up.railway.app
+    port: 443
+    uuid: 7c9e2a4b-5f1d-4a8e-b3c6-9d2e7f5a1b4c
+    alterId: 0
+    cipher: auto
+    tls: true
+    servername: xray-eu-west-production-ef53.up.railway.app
+    network: ws
+    ws-opts:
+      path: /tk-rail
+      headers:
+        Host: xray-eu-west-production-ef53.up.railway.app
+    udp: true
+
+  - name: "Railway-新加坡"
+    type: vless
+    server: xray-singapore-production-28ed.up.railway.app
+    port: 443
+    uuid: 7c9e2a4b-5f1d-4a8e-b3c6-9d2e7f5a1b4c
+    alterId: 0
+    cipher: auto
+    tls: true
+    servername: xray-singapore-production-28ed.up.railway.app
+    network: ws
+    ws-opts:
+      path: /tk-rail
+      headers:
+        Host: xray-singapore-production-28ed.up.railway.app
+    udp: true
+
+  - name: "Uppcoder-德国-法尔肯施泰因"
+    type: vless
+    server: mcjer3wx-go-uppcoder-xray-01.apps-3.websson.cloud
+    port: 443
+    uuid: 9ddcd5e6-685a-4705-9531-f246bd0f2a76
+    alterId: 0
+    cipher: auto
+    tls: true
+    servername: mcjer3wx-go-uppcoder-xray-01.apps-3.websson.cloud
+    network: ws
+    ws-opts:
+      path: /app/uppcoder-01
+      headers:
+        Host: mcjer3wx-go-uppcoder-xray-01.apps-3.websson.cloud
+    udp: true
+
+proxy-groups:
+  - name: "🚀 节点选择"
+    type: select
+    proxies:
+      - "Cloady-Oregon-01"
+      - "Railway-美国-加州"
+      - "Railway-美国-弗吉尼亚"
+      - "Railway-荷兰-阿姆斯特丹"
+      - "Railway-新加坡"
+      - "Uppcoder-德国-法尔肯施泰因"
+      - "DIRECT"
+  - name: "♻️ 自动选择"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - "Cloady-Oregon-01"
+      - "Railway-美国-加州"
+      - "Railway-美国-弗吉尼亚"
+      - "Railway-荷兰-阿姆斯特丹"
+      - "Railway-新加坡"
+      - "Uppcoder-德国-法尔肯施泰因"
+
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,🚀 节点选择
