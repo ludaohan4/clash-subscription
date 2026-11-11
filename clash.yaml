@@ -112,7 +112,7 @@ proxies:
     network: tcp
     flow: xtls-rprx-vision
     reality-opts:
-      public-key: vS05bPOFXUHQ5sZkgaaXXX6LA0VC454mZtV26jmtxg
+      public-key: jXfNOvR7ie6rTReR16CdRT2-lggWE6f8jlfp7Acmjlw
       short-id: 80acd894d7dae8da
     udp: true
 
