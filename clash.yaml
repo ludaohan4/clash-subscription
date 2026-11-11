@@ -1,9 +1,11 @@
 # Clash 订阅 - Amelia 免卡版节点
-# 生成时间：2026-11-10 17:38 CST
-# 节点数：6 条，其中 Railway 4 条 2026-11-10 12:37 实测 WS 握手返回 101；
-# Uppcoder 1 条 2026-11-10 17:38 实测 WS 握手返回 101 且 xray 客户端端到端经 SOCKS 访问 ipinfo.io 成功，出口德国法尔肯施泰因 Hetzner 188.245.13.213；
-# Cloady 1 条为控制台环境变量核实（LIVE 运行 1天21小时），尚未做客户端握手实测，导入后请先测速。
+# 生成时间：2026-11-11 15:34 CST
+# 节点数：6 条活节点
+# 阿里云香港 2026-11-11 15:28 实测：xray 26.11.9 在跑、监听 443，Reality 回落 curl 微软官网返回 HTTP 200，出口 IP 47.238.227.167 香港（ipinfo.io）；注意：本次未做 VLESS 客户端完整握手，导入后请先测速。
+# Uppcoder 德国节点已死：账号 2026-11-10 18:31 因跑代理违反条款 7.1g 被关，域名 2026-11-11 13:53 实测返回 404，已从订阅移除，由阿里云香港补位。
+# Railway 4 条 2026-11-10 12:37 实测 WS 握手返回 101；Cloady 1 条为控制台环境变量核实（LIVE 运行 1天21小时），尚未做客户端握手实测，导入后请先测速。
 # 注意：订阅链接本身就是凭证，不要公开分享。Railway 试用剩 $4.98 / 30 天，到期服务会停。
+# 阿里云香港试用：300 元额度、¥0.167/小时，约 75 天耗尽（约 2027-01-25），早于试用到期日 2027-02-11；到期/额度用完后实例不会自动释放、会按量计费，须手动释放。
 # Cloady 免费额度已满，同一工作区内再加 xray 会超 CPU、需 $3.40/月，未加。
 port: 7890
 socks-port: 7891
@@ -98,20 +100,20 @@ proxies:
         Host: xray-singapore-production-28ed.up.railway.app
     udp: true
 
-  - name: "Uppcoder-德国-法尔肯施泰因"
+  - name: "Aliyun-香港"
     type: vless
-    server: mcjer3wx-go-uppcoder-xray-01.apps-3.websson.cloud
+    server: 47.238.227.167
     port: 443
-    uuid: 9ddcd5e6-685a-4705-9531-f246bd0f2a76
+    uuid: 5452fb98-3344-4c4c-bc03-db6f3b432c4b
     alterId: 0
     cipher: auto
     tls: true
-    servername: mcjer3wx-go-uppcoder-xray-01.apps-3.websson.cloud
-    network: ws
-    ws-opts:
-      path: /app/uppcoder-01
-      headers:
-        Host: mcjer3wx-go-uppcoder-xray-01.apps-3.websson.cloud
+    servername: www.microsoft.com
+    network: tcp
+    flow: xtls-rprx-vision
+    reality-opts:
+      public-key: vS05bPOFXUHQ5sZkgaaXXX6LA0VC454mZtV26jmtxg
+      short-id: 80acd894d7dae8da
     udp: true
 
 proxy-groups:
@@ -123,7 +125,7 @@ proxy-groups:
       - "Railway-美国-弗吉尼亚"
       - "Railway-荷兰-阿姆斯特丹"
       - "Railway-新加坡"
-      - "Uppcoder-德国-法尔肯施泰因"
+      - "Aliyun-香港"
       - "DIRECT"
   - name: "♻️ 自动选择"
     type: url-test
@@ -135,7 +137,7 @@ proxy-groups:
       - "Railway-美国-弗吉尼亚"
       - "Railway-荷兰-阿姆斯特丹"
       - "Railway-新加坡"
-      - "Uppcoder-德国-法尔肯施泰因"
+      - "Aliyun-香港"
 
 rules:
   - GEOIP,CN,DIRECT
